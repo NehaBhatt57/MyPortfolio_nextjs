@@ -67,6 +67,23 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
     <html lang="en" className={poppins.className}>
       <head>
       {/* <!-- Google tag (gtag.js) --> */}
+      <Script
+          strategy="afterInteractive"
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${LocalConfig.values.NEXT_PUBLIC_GTAG_ID}`}
+        />
+      <Script id="google-analytics" strategy="afterInteractive">
+      {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', '${LocalConfig.values.NEXT_PUBLIC_GTAG_ID}', {
+          page_path: window.location.pathname,
+        });
+      `}
+      </Script>
+{/* 
        <Script strategy="afterInteractive" async src="https://www.googletagmanager.com/gtag/js?id=${LocalConfig.values.NEXT_PUBLIC_GTAG_ID}">
        </Script>
 
@@ -76,7 +93,7 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
        gtag('js', new Date());
 
        gtag('config', '${LocalConfig.values.NEXT_PUBLIC_GTAG_ID}', { page_path: window.location.pathname,});`}
-       </Script>
+       </Script> */}
       </head>
 
       <body
